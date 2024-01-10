@@ -21,7 +21,7 @@ import type { InstanceOptions } from 'flowbite';
     trigger('listAnimations', [
       transition(':enter', [
         query('a.card-football', [  // Target only a elements with class card-football
-          style({ opacity: 0, transform: 'translateY(-20px)' }),
+          style({ opacity: 0, transform: 'translateY(-5px)' }),
           animate('1s ease-in', style({ opacity: 1, transform: 'translateY(0)' }))
         ])
       ])
@@ -32,7 +32,7 @@ export class AppComponent {
 
   constructor() {}
 
-  ngOnInit() { this.collapse.expand();}
+  ngOnInit() { /*this.collapse.expand();*/}
   // set the target element that will be collapsed or expanded (eg. navbar menu)
  $targetEl: HTMLElement | null = document.getElementById('navbar');
 
