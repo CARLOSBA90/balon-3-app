@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { trigger, transition, style, animate, query } from '@angular/animations';
 import { HeaderComponent } from "../../shared/components/header/header.component";
 import { FooterComponent } from "../../shared/components/footer/footer.component";
+import { Card } from '../../core/models/card.model';
+import { CardService } from '../../core/services/card.service';
 
 @Component({
     selector: 'app-home',
@@ -21,5 +23,20 @@ import { FooterComponent } from "../../shared/components/footer/footer.component
     imports: [HeaderComponent, FooterComponent]
 })
 export class HomeComponent {
+  cardsData: Card[] = [];
+  constructor(private cardService: CardService) {}
+
+  ngOnInit() {
+    this.getCards();
+  }
+
+
+  async getCards(){
+    try {
+      this.cardsData = await this.cardService.getCards();
+    } catch (error) {
+      console.error("Error fetching cards:", error);
+    }
+  }
 
 }
