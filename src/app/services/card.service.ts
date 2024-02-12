@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Card } from '../models/card.model';
 import { HttpClient } from '@angular/common/http';
+import { Card } from '../core/models/card.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +19,7 @@ export class CardService {
         return Promise.resolve(this.cards);
       }
   }
+
 
 
   private fetchCards(): Promise<Card[]> {

@@ -1,10 +1,10 @@
 
 <app-header></app-header>
 
-<!--<div class="file-list" @listAnimations >-->
-  <div class="file-list">
+<!--<div class="main-container" @listAnimations >-->
+  <div class="main">
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    @for (card of cardsData; track card.id) {
+    @for (card of cards; track card.id) {
        <div>
         <a  href="#" class="card-football flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow xl:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
           <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="{{card.imageUrl}}" alt="">
@@ -16,6 +16,13 @@
       </div>
        }
     </div>
+
+  <app-paginator [data]="this.paginationData"></app-paginator>
 </div>
 
-<app-footer></app-footer>
+
+
+
+
+
+<!--<app-footer></app-footer>-->

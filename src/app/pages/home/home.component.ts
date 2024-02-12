@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { trigger, transition, style, animate, query } from '@angular/animations';
 import { HeaderComponent } from "../../shared/components/header/header.component";
-import { FooterComponent } from "../../shared/components/footer/footer.component";
+import { PaginatorComponent } from '../../shared/components/paginator/paginator.component';
+import { HomeService } from '../../services/home/home.service';
 import { Card } from '../../core/models/card.model';
-import { CardService } from '../../core/services/card.service';
+import { Pagination } from '../../core/models/pagination.model';
 
 @Component({
     selector: 'app-home',
@@ -20,23 +21,29 @@ import { CardService } from '../../core/services/card.service';
             ])
         ])
     ],
-    imports: [HeaderComponent, FooterComponent]
+    imports: [HeaderComponent, PaginatorComponent]
 })
 export class HomeComponent {
-  cardsData: Card[] = [];
-  constructor(private cardService: CardService) {}
+
+  cards: Card[] = [];
+  paginationData: Pagination| undefined;
+
+  constructor(private service: HomeService) {}
+
 
   ngOnInit() {
-    this.getCards();
+    this.getData();
   }
 
 
-  async getCards(){
+  async getData(){
     try {
-      this.cardsData = await this.cardService.getCards();
+      const [cards, paginationData] = await this.service.getHomeData();
+      this.cards = cards;
+      this.paginationData = paginationData;
     } catch (error) {
-      console.error("Error fetching cards:", error);
-    }
+      console.error("Error fetching data in Home Component: ",error);}
   }
+
 
 }
