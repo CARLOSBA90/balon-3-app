@@ -69,24 +69,10 @@ export class HomeService {
    async getPaginationData(): Promise<Pagination> {
     if (!this.data) {
       return this.getData().then(data => {
-        const paginationInfo: Pagination = {
-          date: data.date,
-          limit: data.limit,
-          total: data.total,
-          pages: Math.ceil(data.total / data.limit),
-          actualPage: data.actualPage || 1, // Default to page 1 if not provided
-        };
-        return paginationInfo;
+          return this.generatePagination(data);
       });
     } else {
-      const paginationInfo: Pagination = {
-        date: this.data.date,
-        limit: this.data.limit,
-        total: this.data.total,
-        pages: Math.ceil(this.data.total / this.data.limit),
-        actualPage: this.data.actualPage || 1,
-      };
-      return Promise.resolve(paginationInfo);
+       return Promise.resolve(this.generatePagination(null));
     }
   }
 
@@ -98,18 +84,42 @@ export class HomeService {
     try {
       const data = await this.fetchData();
       const cards = data.cards as Card[];
-      const paginationInfo: Pagination = {
-        date: data.date,
-        limit: data.limit,
-        total: data.total,
-        pages: Math.ceil(data.total / data.limit),
-        actualPage: data.actualPage || 1, // Default to page 1 if not provided
-      };
+      const paginationInfo: Pagination = this.generatePagination(data);
+
       return [cards, paginationInfo];
     } catch (error) {
       console.error("Error fetching and preparing data:", error);
       throw error;
     }
+  }
+
+   /**
+   * Generate data object of pagination from request
+   * @returns object containing information for Paginator Component
+   */
+  generatePagination(data:any):Pagination{
+
+    if(data)  this.data = data;
+
+      return {
+        date: this.data?.date || '',
+        limit: this.data?.limit || 0,
+        total: this.data?.total || 0,
+        pages: this.data?.pages || 0,
+        actualPage: this.data?.actualPage || 1,
+        pageNumbers: this.generatePageNumbers(this.data?.pages || 0)
+      };
+
+    }
+
+
+  generatePageNumbers(pagesNumber: number): string[] {
+      /**T0D0: LOGIC TO HANDLE WIDE RANGE OF PAGES.. FOR EG: 1 - 2 - 3 - .... 30 - 31 - 32 */
+    const pageNumbers = [];
+    for (let i = 1; i <= pagesNumber; i++) {
+      pageNumbers.push(i.toString());
+    }
+    return pageNumbers;
   }
 
 }

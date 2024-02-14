@@ -4,4 +4,5 @@ export interface Pagination {
   total: number;
   pages: number;
   actualPage: number;
+  pageNumbers: string[];
 }

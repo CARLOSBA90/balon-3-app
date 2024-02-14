@@ -11,25 +11,32 @@ import { CommonModule } from '@angular/common';
   styleUrl: './paginator.component.scss'
 })
 export class PaginatorComponent {
-getPageLinks(): any {
-throw new Error('Method not implemented.');
-}
-currentPage: any;
-totalPages: any;
-goToPage(_t10: any) {
-throw new Error('Method not implemented.');
-}
-isActivePage(_t10: any) {
-return "class";
-}
 
   @Input() data: Pagination| undefined;
 
   constructor(private service: HomeService) {}
 
   ngOnInit() {
-    //test purposes
-    setTimeout(()=>{console.log(this.data);},1000);
+    //setTimeout(()=>{console.log(this.data);},1000);
   }
+
+
+
+  previousPage(){
+   console.log("previous page");
+  }
+
+  nextPage(){
+    console.log("next page");
+   }
+
+   getPage(page:string){
+    console.log("get page",page);
+   }
+
+   parseNumber(page:string){
+    return Number(page);
+   }
+
 
 }

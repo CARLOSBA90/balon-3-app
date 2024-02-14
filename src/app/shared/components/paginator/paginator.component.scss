@@ -1,0 +1,22 @@
+.enabled {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+a{
+  cursor: pointer;
+}
+
+.border-blue-paginator{
+--tw-border-opacity: 1;
+border-color: rgb(164 202 254 / var(--tw-border-opacity));
+}
+
+.border-paginator{
+  border-width: 1px;
+}
