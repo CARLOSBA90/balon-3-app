@@ -17,7 +17,7 @@
        }
     </div>
 
-  <app-paginator [data]="this.paginationData"></app-paginator>
+  <app-paginator [data]="this.paginationData" (pageChanged)="onPageChange($event)"></app-paginator>
 </div>
 
 

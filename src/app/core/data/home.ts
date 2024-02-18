@@ -8,3 +8,8 @@ export interface HomeData {
   actualPage: number;
   cards: Card[];
 }
+
+export interface RequestHomeData {
+  page: number;
+}
+

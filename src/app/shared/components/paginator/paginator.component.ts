@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HomeService } from '../../../services/home/home.service';
 import { Pagination } from '../../../core/models/pagination.model';
 import { CommonModule } from '@angular/common';
+import { UtilsService } from '../../../services/general/utils.service';
+
 
 @Component({
   selector: 'app-paginator',
@@ -13,25 +15,29 @@ import { CommonModule } from '@angular/common';
 export class PaginatorComponent {
 
   @Input() data: Pagination| undefined;
+  @Output() pageChanged = new EventEmitter<number>();
 
-  constructor(private service: HomeService) {}
+  constructor(private service: HomeService, public utils: UtilsService) {}
 
   ngOnInit() {
     //setTimeout(()=>{console.log(this.data);},1000);
   }
 
-
-
   previousPage(){
-   console.log("previous page");
+    this.emitPageNumber((this.data?.actualPage??0)-1);
   }
 
   nextPage(){
-    console.log("next page");
+    this.emitPageNumber((this.data?.actualPage??0)+1);
    }
 
    getPage(page:string){
-    console.log("get page",page);
+    const numberPage = this.utils.parseToInt(page);
+    this.emitPageNumber(numberPage);
+   }
+
+   emitPageNumber(page:number){
+    this.pageChanged.emit(page);
    }
 
    parseNumber(page:string){

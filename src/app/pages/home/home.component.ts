@@ -27,6 +27,7 @@ export class HomeComponent {
 
   cards: Card[] = [];
   paginationData: Pagination| undefined;
+  pageNumber:number= 1;
 
   constructor(private service: HomeService) {}
 
@@ -38,11 +39,17 @@ export class HomeComponent {
 
   async getData(){
     try {
-      const [cards, paginationData] = await this.service.getHomeData();
+      const [cards, paginationData] = await this.service.getHomeData({page:this.pageNumber});
       this.cards = cards;
       this.paginationData = paginationData;
+      this.pageNumber = this.paginationData.actualPage;
     } catch (error) {
       console.error("Error fetching data in Home Component: ",error);}
+  }
+
+  onPageChange(pageNumber: number) {
+    this.pageNumber = pageNumber;
+    this.getData();
   }
 
 
