@@ -17,7 +17,7 @@ export class PaginatorComponent {
   @Input() data: Pagination| undefined;
   @Output() pageChanged = new EventEmitter<number>();
 
-  constructor(private service: HomeService, public utils: UtilsService) {}
+  constructor(private service: HomeService, private utils: UtilsService) {}
 
   ngOnInit() {
     //setTimeout(()=>{console.log(this.data);},1000);

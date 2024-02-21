@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { trigger, transition, style, animate, query } from '@angular/animations';
-import { HeaderComponent } from "../../shared/components/header/header.component";
 import { PaginatorComponent } from '../../shared/components/paginator/paginator.component';
 import { HomeService } from '../../services/home/home.service';
 import { Card } from '../../core/models/card.model';
 import { Pagination } from '../../core/models/pagination.model';
+import { ActivatedRoute } from '@angular/router';
+import { UtilsService } from '../../services/general/utils.service';
 
 @Component({
     selector: 'app-home',
@@ -21,7 +22,7 @@ import { Pagination } from '../../core/models/pagination.model';
             ])
         ])
     ],
-    imports: [HeaderComponent, PaginatorComponent]
+    imports: [ PaginatorComponent]
 })
 export class HomeComponent {
 
@@ -29,10 +30,13 @@ export class HomeComponent {
   paginationData: Pagination| undefined;
   pageNumber:number= 1;
 
-  constructor(private service: HomeService) {}
+  constructor(private service: HomeService,
+             private router: ActivatedRoute,
+             private utils: UtilsService) {}
 
 
   ngOnInit() {
+    this.getParams();
     this.getData();
   }
 
@@ -47,10 +51,15 @@ export class HomeComponent {
       console.error("Error fetching data in Home Component: ",error);}
   }
 
+  getParams(){
+    let pageNumber= this.utils.parseToInt(this.router.snapshot.paramMap.get('page')??'');
+    if (pageNumber) this.pageNumber = pageNumber;
+  }
+
+
   onPageChange(pageNumber: number) {
     this.pageNumber = pageNumber;
     this.getData();
   }
-
 
 }
