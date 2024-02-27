@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { trigger, transition, style, animate, query } from '@angular/animations';
 import { PaginatorComponent } from '../../shared/components/paginator/paginator.component';
 import { HomeService } from '../../services/home/home.service';
 import { Card } from '../../core/models/card.model';
 import { Pagination } from '../../core/models/pagination.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UtilsService } from '../../services/general/utils.service';
 
 @Component({
@@ -12,26 +11,17 @@ import { UtilsService } from '../../services/general/utils.service';
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
-    animations: [
-        trigger('listAnimations', [
-            transition(':enter', [
-                query('a.card-football', [
-                    style({ opacity: 0, transform: 'translateY(-5px)' }),
-                    animate('1s ease-in', style({ opacity: 1, transform: 'translateY(0)' }))
-                ])
-            ])
-        ])
-    ],
-    imports: [ PaginatorComponent]
+    animations: [],
+    imports: [PaginatorComponent]
 })
-export class HomeComponent {
-
+export class HomeComponent  {
   cards: Card[] = [];
   paginationData: Pagination| undefined;
   pageNumber:number= 1;
 
   constructor(private service: HomeService,
-             private router: ActivatedRoute,
+             private router: Router,
+             private activedRoute: ActivatedRoute,
              private utils: UtilsService) {}
 
 
@@ -52,7 +42,7 @@ export class HomeComponent {
   }
 
   getParams(){
-    let pageNumber= this.utils.parseToInt(this.router.snapshot.paramMap.get('page')??'');
+    let pageNumber= this.utils.parseToInt(this.activedRoute.snapshot.paramMap.get('page')??'');
     if (pageNumber) this.pageNumber = pageNumber;
   }
 
@@ -60,6 +50,10 @@ export class HomeComponent {
   onPageChange(pageNumber: number) {
     this.pageNumber = pageNumber;
     this.getData();
+  }
+
+  onCardClick(id:number){
+    this.router.navigate(['/c',id]);
   }
 
 }

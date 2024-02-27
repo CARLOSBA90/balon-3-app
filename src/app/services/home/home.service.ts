@@ -13,12 +13,19 @@ export class HomeService {
 
   constructor(private http: HttpClient) {}
 
+  /*********
+   *
+   *
+   * CAMBIA PETICION A GET Y USAR ENCABEZADOS EN EL HEADERS!!!
+   *
+   *
+   */
 
     /**
    * HomeData
    * @returns POST request from API (homeData)
    */
-    private fetchData(request:any): Promise<HomeData> {
+    private fetchDataPost(request:any): Promise<HomeData> {
       return new Promise((resolve, reject) => {
 
         const data: RequestHomeData = {
@@ -50,9 +57,12 @@ export class HomeService {
    * HomeData
    * @returns GET request from API (homeData)
    */
-  private fetchDataGet(): Promise<HomeData> {
+  private fetchData(request:any): Promise<HomeData> {
+
+    const url = `assets/mocks/home.json?page=${request.page}`; // Construct URL
+
     return new Promise((resolve, reject) => {
-      this.http.get<HomeData>('assets/mocks/home.json').subscribe({
+      this.http.get<HomeData>(url).subscribe({
         next:(response: HomeData) =>{
             this.data = response;
             resolve(response);
@@ -64,7 +74,7 @@ export class HomeService {
         complete:()=> {
           this.isFetching = false;
         }
-    });
+      });
     });
   }
 

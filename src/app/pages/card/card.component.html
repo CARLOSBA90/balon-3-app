@@ -1,24 +1,55 @@
 
 
-<div class="grid gap-4">
-  <div>
-      <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt="">
+<article class="grid gap-4">
+  <div class="flex flex-col w-full h-min bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+    <div class="flex flex-row gap-4 items-center p-4 leading-normal">
+      <div class="flex-1">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+        <p class="flex mb-3 font-normal text-gray-700 dark:text-gray-400 justify-all">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex. Maecenas interdum sem sed ipsum laoreet faucibus. Nulla sed diam sem. Nunc sed diam libero. Integer in lacus eu laoreet tincidunt vel vel velit. Donec euismod bibendum laoreet.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex. Maecenas interdum sem sed ipsum laoreet faucibus. Nulla sed diam sem. Nunc sed diam libero. Integer in lacus eu laoreet tincidunt vel vel velit. Donec euismod bibendum laoreet.</p>
+
+        <p class="text-gray-700 dark:text-gray-400 justify-all">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex. Maecenas interdum sem sed ipsum laoreet faucibus. Nulla sed diam sem. Nunc sed diam libero. Integer in lacus eu laoreet tincidunt vel vel velit. Donec euismod bibendum laoreet.</p>
+      </div>
+      <img class="w-48 rounded-lg md:w-56 md:rounded-none" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt="">
+    </div>
+
+    <hr class="my-4 border-gray-200 dark:border-gray-700" />
+
+    <div class="flex flex-row gap-4 items-center p-4 leading-normal">
+      <img class="w-48 rounded-lg md:w-56 md:rounded-none" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
+      <div class="flex-1">
+      <p class="text-gray-700 dark:text-gray-400 justify-all">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex. Maecenas interdum sem sed ipsum laoreet faucibus. Nulla sed diam sem. Nunc sed diam libero. Integer in lacus eu laoreet tincidunt vel vel velit. Donec euismod bibendum laoreet.</p>
+      <p class="text-gray-700 dark:text-gray-400 justify-all">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae velit ex. Maecenas interdum sem sed ipsum laoreet faucibus. Nulla sed diam sem. Nunc sed diam libero. Integer in lacus eu laoreet tincidunt vel vel velit. Donec euismod bibendum laoreet.</p>
+      </div>
+
+   </div>
   </div>
+
   <div class="grid grid-cols-5 gap-4">
-      <div>
+
+    <div (click)="onCardClick(1)"  class="card-hover border border-gray-200 rounded-lg shadow items-center justify-center">
           <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt="">
+          <div class="text-center">Next game</div>
       </div>
-      <div>
+
+      <div (click)="onCardClick(1)" class="card-hover border border-gray-200 rounded-lg shadow items-center justify-center">
           <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
+          <div class="text-center">Next game</div>
       </div>
-      <div>
+
+      <div (click)="onCardClick(1)" class="card-hover border border-gray-200 rounded-lg shadow items-center justify-center">
           <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="">
+          <div class="text-center">Next game</div>
       </div>
-      <div>
+
+      <div (click)="onCardClick(1)" class="card-hover border border-gray-200 rounded-lg shadow items-center justify-center">
           <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt="">
+          <div class="text-center">Next game</div>
       </div>
-      <div>
+
+      <div (click)="onCardClick(1)" class="card-hover border border-gray-200 rounded-lg shadow items-center justify-center">
           <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg" alt="">
+          <div class="text-center">Next game</div>
       </div>
   </div>
-</div>
+</article>

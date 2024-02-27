@@ -39,19 +39,23 @@ body{
 /*-->CARDS<--*/
 .card-football{
 margin: 5px;
+cursor: pointer;
 }
 
 .card-football img{
   width: 100%;
   height: 240px;
 }
+
+.card-hover, .nav-hover{
+  cursor: pointer;
+}
 /*-----------*/
 
 
 /*-->PAGINATOR<--*/
 app-paginator{
-  margin-left:auto;
-  padding:5px 5px 0;
+   float: right;
 }
 
 /*-----------*/
