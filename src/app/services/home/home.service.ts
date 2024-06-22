@@ -59,7 +59,10 @@ export class HomeService {
    */
   private fetchData(request:any): Promise<HomeData> {
 
-    const url = `assets/mocks/home.json?page=${request.page}`; // Construct URL
+   // const url = `assets/mocks/home.json?page=${request.page}`; // Construct URL
+
+   const url = `http://localhost:3000/api/v1/cards/page/${request.page}`;
+
 
     return new Promise((resolve, reject) => {
       this.http.get<HomeData>(url).subscribe({

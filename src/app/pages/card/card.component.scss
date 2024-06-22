@@ -1,0 +1,18 @@
+
+@media (max-width: 559px) {
+
+.responsive-card{
+    display: block;
+
+    img {
+        width: 100%;
+    }
+
+}
+
+.gallery{
+grid-template-columns: repeat(1, minmax(0, 1fr));
+
+}
+
+}
