@@ -6,13 +6,23 @@ import { Card } from '../../core/models/card.model';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 import { CommonModule } from '@angular/common';
+import { trigger, style, animate, transition } from '@angular/animations';
+
 
 @Component({
   selector: 'app-card',
   standalone: true,
   imports: [CommonModule,SpinnerComponent],
   templateUrl: './card.component.html',
-  styleUrl: './card.component.scss'
+  styleUrl: './card.component.scss',
+  animations: [
+    trigger('smoothChange', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('600ms ease-in', style({ opacity: 1 }))
+      ]),
+    ])
+  ]
 })
 export class CardComponent {
 

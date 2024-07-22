@@ -1,10 +1,9 @@
 
-<ng-container *ngIf="!inRequest">
 <section  class="home-container text-gray-600 body-font">
   <div class="container px-2  mx-auto w-full">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       @for (card of cards; track card.id) {
-        <div class="p-1">
+        <div  [@smoothChange] class="p-1">
           <div class="bg-gray-100 h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
             <img class="lg:h-36 md:h-36 w-full object-cover object-center" src="{{card.imageUrl}}" alt="">
             <div class="p-6">
@@ -34,6 +33,5 @@
 
 <app-paginator [data]="this.paginationData" (pageChanged)="onPageChange($event)"></app-paginator>
 
-</ng-container>
 
 <app-spinner *ngIf="inRequest"></app-spinner>

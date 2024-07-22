@@ -7,14 +7,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UtilsService } from '../../services/general/utils.service';
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 import { CommonModule } from '@angular/common';
+import { trigger, style, animate, transition } from '@angular/animations';
+
 
 @Component({
     selector: 'app-home',
     standalone: true,
+    imports: [CommonModule, PaginatorComponent, SpinnerComponent],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
-    animations: [],
-    imports: [CommonModule, PaginatorComponent, SpinnerComponent]
+    animations: [
+      trigger('smoothChange', [
+        transition(':enter', [
+          style({ opacity: 0 }),
+          animate('400ms ease-in', style({ opacity: 1 }))
+        ]),
+      ])
+    ]
 })
 export class HomeComponent  {
   cards: Card[] = [];
