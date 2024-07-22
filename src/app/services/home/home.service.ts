@@ -61,7 +61,7 @@ export class HomeService {
 
    // const url = `assets/mocks/home.json?page=${request.page}`; // Construct URL
 
-   const url = `http://localhost:3000/api/v1/cards/page/${request.page}`;
+   const url = `http://localhost:3000/api/v1/cards/p/${request.page}`;
 
 
     return new Promise((resolve, reject) => {
