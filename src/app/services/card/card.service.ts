@@ -7,6 +7,7 @@ import { CardData } from '../../core/data/card';
 })
 export class CardService {
   private isFetching = false;
+  url:string = 'https://cepr0.com/balon3/backend/';
 
   constructor(private http: HttpClient) {}
 
@@ -26,7 +27,7 @@ export class CardService {
    */
   fetchData(request: { id: number; }): Promise<CardData> {
 
-    const url = `http://localhost:3000/api/v1/cards/g/${request.id}`;
+    const url = `${this.url}v1/cards/g/${request.id}`;
 
     return new Promise((resolve, reject) => {
       this.http.get<CardData>(url).subscribe({

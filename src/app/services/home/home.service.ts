@@ -10,6 +10,7 @@ import { Pagination } from '../../core/models/pagination.model';
 export class HomeService {
   data: HomeData| null = null;
   private isFetching = false;
+  url:string = 'https://cepr0.com/balon3/backend/';
 
   constructor(private http: HttpClient) {}
 
@@ -61,7 +62,7 @@ export class HomeService {
 
    // const url = `assets/mocks/home.json?page=${request.page}`; // Construct URL
 
-   const url = `http://localhost:3000/api/v1/cards/p/${request.page}`;
+   const url = `${this.url}v1/cards/p/${request.page}`;
 
 
     return new Promise((resolve, reject) => {
