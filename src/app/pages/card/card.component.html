@@ -1,0 +1,20 @@
+<article class="grid gap-4 min-h-full">
+  <div class="flex flex-col w-full h-min bg-white border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+    <div class="responsive-card flex flex-row gap-4 items-center p-4 leading-normal">
+      <div class="flex-1">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-left">{{ this.card?.title }}</h5>
+        <div [innerHTML]="safeContent"></div>
+      </div>
+      <img class="min-w-1/3 max-w-1/3 max-h-24r rounded-lg" src="{{ this.card?.imageUrl }}" alt="">
+    </div>
+  </div>
+
+  <div class="gallery grid grid-cols-5 gap-4">
+    <div *ngFor="let card of gallery;" [@smoothChange] (click)="onCardClick(card.id)" class="card-hover border border-gray-200 rounded-lg shadow items-center justify-center">
+      <img class="max-w-full rounded-lg min-h-[230px]" src="{{ card.imageUrl }}" alt="">
+      <div class="text-center text-sm mt-4">{{ card.title }}</div>
+    </div>
+  </div>
+</article>
+
+<app-spinner *ngIf="inRequest"></app-spinner>
